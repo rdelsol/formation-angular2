@@ -1,0 +1,34 @@
+<p>
+  inscription works!
+</p>
+  <div class="container">
+      <h1>Inscription client</h1>
+      <div [hidden]="submitted">
+      <form (ngSubmit)="onInscription()" [formGroup]="inscriptionGroup" >
+        <div class="form-group">
+          <input type="text" class="form-control" name="prenom" placeholder="Prénom" formControlName= "prenom">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" name="nom"  placeholder="Nom" formControlName="nom" >
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" name="telephone" formControlName="telephone" placeholder="Téléphone" >
+        </div>
+        <div class="form-group">
+            <input type="number" class="form-control" name="age"  placeholder="Age" formControlName="age">
+          </div>
+          <div class="form-group">
+              <input type="email" class="form-control" name="email"  placeholder="Email" formControlName="email">
+          </div>
+        <button type="submit" class="btn btn-success" [disabled]="inscriptionGroup.invalid" >Inscription</button>
+      </form>
+    </div>
+
+    <div [hidden]="!submitted">
+       Bonjour {{client.prenom}} {{client.nom}}, vous êtes maintenant inscrit !<br>
+       Data: {{client | json}}
+       <br>
+       <input type="button" (click)="onResetForm()" value="reset" />
+    </div>
+  </div>
+

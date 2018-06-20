@@ -1,0 +1,12 @@
+<h1>TVA Works !</h1>
+Montant hors taxes : <input [(ngModel)]="calculTva.ht" [class.positif]="calculTva.ht >= 0"
+                                  [class.negatif]="calculTva.ht < 0"
+                                  (blur) = "onCalculer()"><br>
+Taux tva : <input [(ngModel)]="calculTva.tx" (keyup.enter)="onCalculer()" [ngClass] = "setCssClasses(calculTva.tx)"><br><br>
+<input type="button" (click) = "onCalculer()" value="Calcule moi ça !"/>
+<br>
+<hr>
+<div *ngIf="calculTva.tva >0 ">
+Montant TVA : <input disabled [(ngModel)]="calculTva.tva" placeholder="Montant TVA"><br>
+Montant TTC : <input disabled [(ngModel)]="calculTva.ttc" placeholder="Montant TTC">
+</div>
