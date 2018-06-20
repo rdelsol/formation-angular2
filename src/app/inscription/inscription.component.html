@@ -23,7 +23,17 @@
         <button type="submit" class="btn btn-success" [disabled]="inscriptionGroup.invalid" >Inscription</button>
       </form>
     </div>
-
+    <br>
+    <input type="button" value="Liste clients" (click)="onSearchClients()" class="btn btn-warning">
+    <hr>
+    <table class="table table-hover">
+      <tr><th>prénom</th><th>nom</th></tr>
+      <tr *ngFor="let c of tabCLients">
+        <td>{{c.prenom}}</td>
+        <td>{{c.nom}}</td>
+      </tr>
+      
+    </table>
     <div [hidden]="!submitted">
        Bonjour {{client.prenom}} {{client.nom}}, vous êtes maintenant inscrit !<br>
        Data: {{client | json}}

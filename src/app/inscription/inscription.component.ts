@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild,  } from '@angular/core';
 import { Client } from './client';
 import { NgForm, FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { ClientService } from '../client.service';
 
 @Component({
   selector: 'app-inscription',
@@ -13,7 +14,9 @@ export class InscriptionComponent implements OnInit {
 
   client : Client = new Client();
   submitted:boolean = false;
-  constructor(private fb:FormBuilder) { }
+  tabCLients : Client[] = [];
+
+  constructor(private clientService : ClientService) { }
 
   onInscription() : void {
     this.submitted = true;
@@ -22,6 +25,20 @@ export class InscriptionComponent implements OnInit {
     this.client.telephone = this.inscriptionGroup.get('telephone').value;
     this.client.age = this.inscriptionGroup.get('age').value;
     this.client.email = this.inscriptionGroup.get('email').value;    
+
+    this.clientService.postInscriptionObservable(this.client)
+    .subscribe(
+      (clientEnregistre) => {this.client = clientEnregistre; this.onSearchClients()},
+      (error) => console.log(error)
+     );
+  }
+
+  onSearchClients () {
+    this.clientService.getTabInscriptionsObservable()
+                      .subscribe(
+                        (tabInscription) => {this.tabCLients = tabInscription},
+                        (error) => console.log(error)
+                       );
   }
   
 

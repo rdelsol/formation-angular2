@@ -13,6 +13,7 @@ import { InscriptionComponent } from './inscription/inscription.component';
 import { UtilModule } from '../util/util.module';
 import { HeaderComponent } from './header/header.component';
 import { CommunService } from './commun.service';
+import { HttpClientModule } from '@angular/common/http'; 
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { CommunService } from './commun.service';
     HeaderComponent
   ],
   imports: [
-    BrowserModule, FormsModule,  ReactiveFormsModule , NgbModule.forRoot(), UtilModule
+    BrowserModule, FormsModule,  ReactiveFormsModule , NgbModule.forRoot(), UtilModule, HttpClientModule
   ],
   providers: [CommunService],
   bootstrap: [AppComponent]
